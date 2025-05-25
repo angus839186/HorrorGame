@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        playerInput = FindObjectOfType<PlayerInputManager>();
+        playerInput = FindAnyObjectByType<PlayerInputManager>();
         controller = GetComponent<CharacterController>();
         MainCamera = Camera.main;
         stateMachine = new StateMachine();
