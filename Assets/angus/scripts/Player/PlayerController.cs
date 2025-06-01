@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerData playerdata;
     public PlayerData Data => playerdata;
 
-    public PlayerInputManager playerInput { get; private set; }
     public StateMachine stateMachine { get; private set; }
 
     float gravity = -9.81f;
@@ -27,29 +26,31 @@ public class PlayerController : MonoBehaviour
     public Vector2 move { get; private set; }
 
 
-    private void Start()
+    public PlayerInputManager inputManager;
+
+    void Awake()
     {
-        playerInput = FindAnyObjectByType<PlayerInputManager>();
         controller = GetComponent<CharacterController>();
         MainCamera = Camera.main;
         stateMachine = new StateMachine();
         stateMachine.IntializeState(new StandState(this));
-        playerInput.crouchStateInput += ToggleCrouch;
-        playerInput.crawlStateInput += ToggleCrawl;
-        playerInput.moveInput += HandleMoveInput;
+    }
+
+    void OnEnable()
+    {
+        inputManager = FindAnyObjectByType<PlayerInputManager>();
+
+        inputManager.moveInput += HandleMoveInput;
     }
 
     void OnDisable()
     {
-        playerInput.crouchStateInput -= ToggleCrouch;
-        playerInput.crawlStateInput -= ToggleCrawl;
-        playerInput.moveInput -= HandleMoveInput;
+        inputManager.moveInput -= HandleMoveInput;
     }
     private void Update()
     {
         UpdateGravity();
         stateMachine.Update();
-        Debug.Log(move);
     }
 
     public void HandleMoveInput(Vector2 _moveInput)
