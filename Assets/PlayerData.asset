@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   hp: 100
-  standSpeed: 2.1
-  standHeight: 1.1
+  standSpeed: 6
+  standHeight: 1.9
   crouchSpeed: 1.3
   crouchHeight: 0.7
   crawlSpeed: 0.9

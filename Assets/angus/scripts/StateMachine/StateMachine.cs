@@ -25,5 +25,9 @@ public class StateMachine
         currentState = state;
         currentState?.Enter();
     }
+    public void SetDefaultState(Istate state)
+    {
+        
+    }
     
 }

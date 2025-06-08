@@ -113,29 +113,4 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
         }
     }
-
-    public void ToggleCrouch() //蹲
-    {
-        Istate currentState = stateMachine.GetCurrentState();
-        if (currentState is StandState)
-        {
-            stateMachine.ChangeState(new CrouchState(this));
-        }
-        else if (currentState is CrouchState)
-        {
-            stateMachine.ChangeState(new StandState(this));
-        }
-    }
-    public void ToggleCrawl() //爬
-    {
-        Istate currentState = stateMachine.GetCurrentState();
-        if (currentState is StandState)
-        {
-            stateMachine.ChangeState(new CrawlState(this));
-        }
-        else if (currentState is CrawlState)
-        {
-            stateMachine.ChangeState(new StandState(this));
-        }
-    }
 }

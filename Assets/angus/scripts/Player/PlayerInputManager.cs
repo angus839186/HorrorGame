@@ -46,6 +46,9 @@ public class PlayerInputManager : MonoBehaviour
         //    (b) Interact: Press(behavior=2) + Hold 都在這裡判別
         gameInput.Player.Interact.performed += OnInteractPerformed;
 
+        gameInput.Player.CameraRotate.performed += OnCameraRotate;
+        gameInput.Player.CameraRotate.canceled += OnCameraRotate;
+
 
         gameInput.Player.Enable();
     }
@@ -56,6 +59,9 @@ public class PlayerInputManager : MonoBehaviour
         gameInput.Player.Move.performed -= OnMovePerformed;
         gameInput.Player.Move.canceled  -= OnMoveCanceled;
         gameInput.Player.Interact.performed -= OnInteractPerformed;
+
+        gameInput.Player.CameraRotate.performed -= OnCameraRotate;
+        gameInput.Player.CameraRotate.canceled -= OnCameraRotate;
 
         
 
