@@ -94,9 +94,7 @@ public class PlayerInputManager : MonoBehaviour
             tapInteract?.Invoke();
         }
     }
-
-    //─── 如果你有額外要透過程式呼叫的鏡頭旋轉、蹲/爬，就自行寫公開方法讓外部呼叫──
-    //    例如透過另一路 Binding 訂閱到 “CameraRotate” Action 時，就在這裡觸發：
+    
     public void OnCameraRotate(InputAction.CallbackContext ctx)
     {
         float delta = ctx.ReadValue<float>();

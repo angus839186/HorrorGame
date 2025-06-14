@@ -106,7 +106,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""id"": ""d514b9bc-c428-420a-83ef-5523244aef38"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -123,8 +123,8 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""38382291-0009-4280-b583-2e4fdcb95135"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""Press(behavior=2),Hold"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",

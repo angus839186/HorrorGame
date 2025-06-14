@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableObject : MonoBehaviour, IInteractable
+public abstract class InteractableObject : MonoBehaviour, IInteractable
 {
-    public void Interact()
+    private string interactObjectName;
+    public virtual void Interact(GameObject interactor)
     {
         Debug.Log("Interacted with" + this.gameObject.name);
+    }
+
+    public string GetInteractObjectName()
+    {
+        return interactObjectName;
     }
 }

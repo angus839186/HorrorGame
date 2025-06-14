@@ -1,4 +1,7 @@
+using UnityEngine;
+
 public interface IInteractable
 {
-    void Interact();
+    string GetInteractObjectName();
+    void Interact(GameObject interactor);
 }
