@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        if (!controller.enabled) return;
+        
         UpdateGravity();
         stateMachine.Update();
     }
