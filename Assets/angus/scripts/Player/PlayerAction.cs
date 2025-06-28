@@ -8,38 +8,41 @@ public class PlayerAction : MonoBehaviour
 
     private CharacterController character;
 
+    private Animator animator;
+
     void Start()
     {
         character = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
         if (character == null)
         {
             Debug.LogError("CharacterController component not found on PlayerAction object.");
         }
     }
-    public void CrossWindow(Vector3 nextPos)
+    public void CrossWindow(Vector3 fromPos)
     {
         if (!isInteracting)
         {
-            StartCoroutine(CrossWindowCoroutine(nextPos));
+            transform.position = fromPos;
+            StartCoroutine(CrossWindowCoroutine());
             Debug.Log("即將跨越窗戶");
         }
     }
-    private IEnumerator CrossWindowCoroutine(Vector3 nextPos)
+    private IEnumerator CrossWindowCoroutine()
     {
-        float interactingTime = 0.3f;
         isInteracting = true;
         character.enabled = false;
+        animator.applyRootMotion = true;
+        animator.SetTrigger("CrossWindow");
 
-        Debug.Log("開始跨越窗戶（等待中）");
-
-        yield return new WaitForSeconds(interactingTime);
-
-        transform.position = nextPos;
-
-        Debug.Log("完成跨越窗戶");
-
+        yield return null;
+    }
+    public void SetPosAfterCrossWindow()
+    {
+        if (character != null)
+        character.enabled = true;
         isInteracting = false;
-        character.enabled = true;   
+        Debug.Log("完成跨越窗戶");
     }
 
 

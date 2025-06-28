@@ -101,7 +101,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""JumpInteract"",
                     ""type"": ""Button"",
                     ""id"": ""d514b9bc-c428-420a-83ef-5523244aef38"",
                     ""expectedControlType"": """",
@@ -123,11 +123,11 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""38382291-0009-4280-b583-2e4fdcb95135"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""JumpInteract"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -227,7 +227,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_JumpInteract = m_Player.FindAction("JumpInteract", throwIfNotFound: true);
         m_Player_CameraRotate = m_Player.FindAction("CameraRotate", throwIfNotFound: true);
     }
 
@@ -310,7 +310,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_JumpInteract;
     private readonly InputAction m_Player_CameraRotate;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
@@ -328,9 +328,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Player_Move;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Interact".
+        /// Provides access to the underlying input action "Player/JumpInteract".
         /// </summary>
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @JumpInteract => m_Wrapper.m_Player_JumpInteract;
         /// <summary>
         /// Provides access to the underlying input action "Player/CameraRotate".
         /// </summary>
@@ -364,9 +364,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
+            @JumpInteract.started += instance.OnJumpInteract;
+            @JumpInteract.performed += instance.OnJumpInteract;
+            @JumpInteract.canceled += instance.OnJumpInteract;
             @CameraRotate.started += instance.OnCameraRotate;
             @CameraRotate.performed += instance.OnCameraRotate;
             @CameraRotate.canceled += instance.OnCameraRotate;
@@ -384,9 +384,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
+            @JumpInteract.started -= instance.OnJumpInteract;
+            @JumpInteract.performed -= instance.OnJumpInteract;
+            @JumpInteract.canceled -= instance.OnJumpInteract;
             @CameraRotate.started -= instance.OnCameraRotate;
             @CameraRotate.performed -= instance.OnCameraRotate;
             @CameraRotate.canceled -= instance.OnCameraRotate;
@@ -438,12 +438,12 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "JumpInteract" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnInteract(InputAction.CallbackContext context);
+        void OnJumpInteract(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "CameraRotate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

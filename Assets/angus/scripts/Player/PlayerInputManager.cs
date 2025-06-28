@@ -6,7 +6,6 @@ using UnityEngine.InputSystem.Interactions;
 public class PlayerInputManager : MonoBehaviour
 {
     public static PlayerInputManager Instance { get; private set; }
-    // 由 .inputactions 自動生成的類別
     public GameInput gameInput;
 
     // 供外部訂閱：移動向量、鏡頭旋轉、蹲/爬、與互動
@@ -44,7 +43,7 @@ public class PlayerInputManager : MonoBehaviour
         gameInput.Player.Move.canceled += OnMoveCanceled;
 
         //    (b) Interact: Press(behavior=2) + Hold 都在這裡判別
-        gameInput.Player.Interact.performed += OnInteractPerformed;
+        gameInput.Player.JumpInteract.performed += OnInteractPerformed;
 
         gameInput.Player.CameraRotate.performed += OnCameraRotate;
         gameInput.Player.CameraRotate.canceled += OnCameraRotate;
@@ -58,7 +57,7 @@ public class PlayerInputManager : MonoBehaviour
         // 4. 取消訂閱並 Disable，避免記憶體洩漏
         gameInput.Player.Move.performed -= OnMovePerformed;
         gameInput.Player.Move.canceled  -= OnMoveCanceled;
-        gameInput.Player.Interact.performed -= OnInteractPerformed;
+        gameInput.Player.JumpInteract.performed -= OnInteractPerformed;
 
         gameInput.Player.CameraRotate.performed -= OnCameraRotate;
         gameInput.Player.CameraRotate.canceled -= OnCameraRotate;

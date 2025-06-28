@@ -10,8 +10,10 @@ public class window : InteractableObject
         PlayerAction playerAction = interactor.GetComponent<PlayerAction>();
 
         Vector3 from = interactor.transform.position;
+        Vector3 startPos = (Vector3.Distance(from, pointA.position) < Vector3.Distance(from, pointB.position))
+            ? pointA.position : pointB.position;
         Vector3 to = (Vector3.Distance(from, pointA.position) < Vector3.Distance(from, pointB.position))
          ? pointB.position : pointA.position;
-        playerAction.CrossWindow(to);
+        playerAction.CrossWindow(startPos);
     }
 }
