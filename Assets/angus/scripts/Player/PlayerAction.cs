@@ -19,27 +19,19 @@ public class PlayerAction : MonoBehaviour
             Debug.LogError("CharacterController component not found on PlayerAction object.");
         }
     }
-    public void CrossWindow(Vector3 fromPos)
+    public void CrossWindow()
     {
-        if (!isInteracting)
-        {
-            transform.position = fromPos;
-            StartCoroutine(CrossWindowCoroutine());
-            Debug.Log("即將跨越窗戶");
-        }
-    }
-    private IEnumerator CrossWindowCoroutine()
-    {
+        if (isInteracting) return;
         isInteracting = true;
-        character.enabled = false;
-        animator.applyRootMotion = true;
-        animator.SetTrigger("CrossWindow");
 
-        yield return null;
+        // 關閉 CharacterController 才能用動畫位移
+        character.enabled = false;
+        animator.SetTrigger("CrossWindow");
     }
     public void SetPosAfterCrossWindow()
     {
-        if (character != null)
+        // 先把角色撥到窗戶的另一邊
+        // （如果你要動畫以外的位移，或是根據 pointB 再做一次插值，都可以在這裡做）
         character.enabled = true;
         isInteracting = false;
         Debug.Log("完成跨越窗戶");
